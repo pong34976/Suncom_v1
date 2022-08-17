@@ -1,0 +1,37 @@
+button[disabled]{
+    background: #000 !important;
+    color: white !important;
+  
+          }
+.btn-warning{
+border-color: #19647E;
+    background: linear-gradient(#F4D35D, #EE964B); /* Standard syntax */
+    color: white !important;
+          }
+          .btn-warning:hover{
+            border-color: #F4D35D;
+            background: #EE964B !important;
+color: white !important;
+ } 
+
+ .btn-primary{
+border-color: #1F271B;
+    background: linear-gradient(#00989A, #19647E); /* Standard syntax */
+    color: white !important;
+          }
+          .btn-primary:hover{
+            border-color: #1F271B;
+            background: #19647E !important;
+color: white !important;
+ } 
+
+ .btn-danger{
+border-color: #FFFFFF;
+    background: linear-gradient(red, #523F38); /* Standard syntax */
+    color: white !important;
+          }
+          .btn-danger:hover{
+            border-color: #523F38;
+            background: red !important;
+color: white !important;
+ } 
