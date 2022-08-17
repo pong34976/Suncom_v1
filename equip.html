@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+ 
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script> -->
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="asset/datatables.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="asset/datatables.min.css"/>
+<!-- data select -->
+<script type="text/javascript" src="asset/Select-1.3.4/js/dataTables.select.min.js"></script>
+<link rel="stylesheet" type="text/css" href="asset/DataTables-1.11.4/css/dataTables.dataTables.min.css"/>
+ <!-- data select -->
+ <script type="text/javascript" src="asset/Buttons-2.2.2/js/buttons.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="asset/Buttons-2.2.2/css/buttons.dataTables.min.css"/>
+<body>
+  <div class="container-md ">
+      <h3 class="text-dark">ระบบควบคุมอุปกรณ์hardware </h3>
+      <small><?php echo @VER?></small>
+      <style>
+        .zooms {
+          padding: 50px;
+          background-color: green;
+          transition: transform .2s; /* Animation */
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+        }
+        
+        .zoom:hover {
+          transform: scale(3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+        </style> 
+      <script>
+  
+      </script>
+<?php if(isset($_SESSION["level"])){
+  if( $_SESSION["level"] ==1){
+  ?>
+  <link rel="stylesheet" href="css/global.css">
+      <div class=" ">
+ <button type="button" class="btn btn-primary btn-add" onclick="showcreate('add')" data-bs-toggle="button" aria-pressed="false"  >เพิ่มข้อมูล</button>
+ <button type="button" class="btn btn-warning btn-edit "  onclick="showcreate('edit')" data-bs-toggle="button" aria-pressed="false"  disabled >แก้ไขข้อมูล</button>
+ <button type="button" class="btn btn-danger btn-edit btn-del "    aria-describedby="helpId" onclick=" " data-bs-toggle="button" aria-pressed="false"  disabled > ลบ</button>
+ 
+  <?php }}?>
+  <script>
+
+  </script>
+    <form class="form-add   card" enctype="multipart/form-data" id="form-add"  style="display: none;"  action="" method="post">
+<div class="card-header bg-secondary  text-white">xxx </div>
+<!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick=" $('.form-add ').hide()"></button> -->
+<div class="showta"></div>
+<div class="card-body row">
+ 
+  <div class="mb-3 col-12  ps-6 pe-6 ms-6 me-6">
+    <label for="" class="form-label">TOKEN</label>
+    <input type="text" class="form-control"  name="token"    value="<?php echo TOKEN?>"  readonly   aria-describedby="helpId" placeholder="">
+    <small id="helpId" class="form-text text-muted">ใช้แค่ทดสอบ</small>
+  </div>    
+  <div class="mb-3 col-12 col-xl-2  " style="display: none;"> 
+    <label for="" class="form-label">Action</label>
+    <input type="text" class="form-control"  id="action"   aria-describedby="helpId" readonly placeholder="">
+    <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+  </div>
+          <div class="mb-3 col-12 col-xl-1  input action">
+            <label for="" class="form-label">หมายเลข</label>
+            <input type="text" class="form-control" name="id_equip" id="id_equip" readonly    aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-3 ">
+            <label for="" class="form-label">อุปกรณ์</label>
+            <input type="text" class="form-control" name="name_equip" id="name_equip"      aria-describedby="helpId" placeholder="">
+            <!-- <input type="text" class="form-control input" name="re_type" id="re_type"    aria-describedby="helpId" placeholder=""> -->
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+  
+       <div class="mb-3 col-12 col-xl-4 ">
+            <label for="" class="form-label">ยี่ห้อ/รุ่น</label>
+            <input type="text" class="form-control input" name="detail_equip" id="detail_equip"   aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>   
+          <div class="mb-3 col-12 col-xl-4 ">
+            <label for="formFile" class="form-label" >ภาพ</label>
+  
+            <input class="form-control" type="file" name="img_equip" id="img_equip" accept="image/*">
+            <!-- <button type="submit" class="btn btn-secondary" > </button> -->
+      
+          </div>
+ 
+         
+        <div class=" col text-center col-12">
+ <button type="submit" id="readd" class="btn readd btn-primary ">บันทึก</button>
+  <button type="reset" class="btn  btn-danger " onclick=" $('.form-add ').hide()">ปิด</button>
+    <script>
+
+    </script>
+  </div>
+        </form>
+      </div>
+      <div class=" row ">
+      <div class=" col text-end">
+      </div>
+      </div>
+     <div class="btn-group"></div>
+      <hr> 
+   
+        <table class="table table-hover text-center  align-middle table-sm" id="myTables">
+          <thead class=" table-primary " >
+            <tr >
+ 
+     
+            </tr>
+            
+          </thead>
+     <tbody>
+      <tr >
+ 
+
+      </tr>
+     </tbody>
+           
+        </table>
+        
+ 
+ 
+       
+  </div>
+  
+ <script>
+   </script>
+  <script>
+    
+  </script>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title" id="exampleModalLabel">ยื่นยันการลบ </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class=""  action="?view=del&page=addmsg" method="post">
+        <div class="modal-body">
+      <div class="container ">
+        <input type="hidden"   name="id" id="myid"  readonly required>
+        <div class="row  ">
+          <h3>ยื่นยันารลบข้อมูล</h3>
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">ชื่อสิทธิ์</label> -->
+      <!-- <input type="text" id="myname" class="form-text form-control "   readonly  > -->
+    </div>
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">หน้าที่</label> -->
+      <!-- <input type="text" id="showname" class="form-text form-control "   readonly  > -->
+    </div>     
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+      <!-- position-fixed  -->
+  
+      <div class="modal fade" id="statuspage"data-target="#myModal" data-toggle="modal"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content ">
+            <div class="modal-header  " style="border: 0px !important;">
+              <!-- <h5 class="modal-title" id="exampleModalLabel">ยื่นยันการลบ </h5> -->
+ 
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <form class=""  action="?view=del&page=addmsg" method="post">
+            <div class="modal-body">
+          <div class="container ">
+            <input type="hidden"   name="id" id="myid"  readonly required>
+            <div class="row  ">
+              <h3> <img id="pageload" src="imagesystem/loadmg.gif" width="80%" height="80%" alt="" srcset=""></h3>
+     
+      </div>
+          </div>
+            </div>
+            <div class="modal-footer"  style="border: 0px !important;">
+              
+              <button  type="button" class="btn btn-danger Closelock col-12" style="display: none;" data-bs-dismiss="modal">Close</button>
+            
+            </div>
+           </form>
+        
+          </div>
+        </div>
+      </div>
+
+       
+<!--  -->
+      <script type="text/javascript" src="js/model/equip.js?v=<?php echo $ver;?>">
+    
+                 </script>
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header text-white">
+      <i class="bi bi-hdd"></i>
+      <strong class="me-auto "> </strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+     
+    </div>
+  </div>
+</div>
+</body>
+</html>

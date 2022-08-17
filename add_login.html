@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มสิทธิ์ผู้ใช้งาน</title>
+</head>
+
+<script>
+ 
+  function idsuername(username){
+    data = '<?php ckusername()?>';
+    const usernames = JSON.parse(data);
+    try  
+  {  
+    var country = usernames.find(el => el.username === username);
+    // console.log(Object.keys(country).length ); 
+    if(Object.keys(country).length >=1){
+    return true; 
+  }
+  }
+  catch(err)
+  {
+    return false; 
+  }
+  return false; 
+  }
+ 
+  </script>
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body> 
+  <div class="container-sm ">
+      <h3>เพิ่มสิทธิ์ผู้ใช้งาน</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=login">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form action="" method="post">
+      <div class="row row-cols-auto">
+        <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3">ชื่อบัญชีผู้ใช่</label>
+       
+            <input type="text"   autocomplete="off"  class="form-control form-text  <?php echo @$err['username'];?> " name="username" id="username" placeholder="USERNAME" value="<?php echo @$username?>" required>
+          </div>
+          <script>
+            
+            $("#username").change(function(){
+              $("#username").next('p').remove();
+              $("#username").addClass("alert-success");
+            $("#username").removeClass("alert-danger");
+             if(idsuername($("#username").val())===true) {
+              $( "input,select,button,textarea" ).prop( "disabled", true );
+              $("#username" ).prop( "disabled", false );
+
+                   $("#username").removeClass("alert-success");
+              $("#username").addClass("alert-danger");
+              $("#username").after("<p class=' text-danger'>มีชื่อบัญชีผู้ใช่!! อยู่ในระบบแล้ว กรุณากรอกใหม่อีกครั้ง...</p>");
+             }else{
+              $("input,select,button,textarea" ).prop( "disabled", false );
+             
+             }
+});
+          </script>
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3">หรัสผ่าน</label>
+       
+            <input type="password"  autocomplete="off"  class="form-control form-text  <?php echo @$err['password_ck'];?> " name="password_ck" id="password_ck" placeholder="PASSWORD" value="<?php echo @$password_ck?>" required>
+          </div>
+          <div class=" col-auto col-12 col-lg-8  ">
+            <label class="form-label mt-3">ยืนยัน หรัสผ่าน</label>
+       
+            <input type="password"  autocomplete="off"  class="form-control    form-text  <?php echo @$err['password'];?> " name="password" id="password" placeholder="PASSWORD" value="<?php echo @$password?>" required>
+          </div>
+          <script>
+            $("#password,#password_ck").change(function(){
+              $("#password,#password_ck").next('p').remove();
+              console.log("password=" + $("#password").val() + "|password_ck=" + $("#password_ck").val());
+               
+              if($("#password_ck").val() != $("#password").val()){
+                $("#password,#password_ck").removeClass("alert-success");
+              $("#password,#password_ck").addClass("alert-danger");
+        
+              $( "input,select,button" ).prop( "disabled", true );
+              $( "#password,#password_ck" ).prop( "disabled", false );
+              $("#password,#password_ck").after("<p class=' text-danger'>รหัสผ่านไม่ตรงกัน</p>");
+// console.log("รหัสผ่านไม่ตรงกัน");
+            }else{
+              $("input,select,button" ).prop( "disabled", false );
+              $("#password,#password_ck").removeClass("alert-danger");
+              $("#password,#password_ck").addClass("alert-success");
+    
+            }
+            });
+         
+            </script> <div class="input-group">
+        <div class=" col-auto col-12 col-lg-2 ">
+            <label class="form-label mt-3">ยศ. (คำนำหน้า) </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['prefix'];?> " name="prefix" id="prefix" placeholder="ยศ. (คำนำหน้า) " value="<?php echo @$prefix?>" required>
+          </div>
+          <div class=" col-auto col-12 col-lg-3">
+            <label class="form-label mt-3">ชื่อ </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required>
+          </div>
+          <div class=" col-auto col-12 col-lg-3">
+            <label class="form-label mt-3">นามสกุล </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['lname'];?> " name="lname" id="lname" placeholder="นามสกุล" value="<?php echo @$lname?>" required>
+          </div>
+        </div>
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3 form-da">วันเกิด</label>
+       <input type="text" autocomplete="off" class="form-control form-text <?php echo @$err['birthdate'];?>" name="birthdate" id="birthdate"  value="<?php echo @$birthdate?>" placeholder="วันเกิด" required>     
+          
+          </div>
+
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3">ระดับสิทธ์ </label>
+        <select name="log_level" id="log_level" class="form-control form-select form-select-lg btn border-secondary ">
+            <option value="0" disabled selected>เลือกระดับสิทธิ์</option>
+            <option value="1" class="btn-warning" >ผู้ดูแลระบบ</option>
+            <option value="2"  class="btn-primary" >หัวหน้างาน</option>
+            <option value="3"  class="btn-info"  >พนักงาน</option>
+        </select>
+        <script>
+          $("#log_level")
+          .change( function(){
+           console.log(this.value );
+           $(this).removeClass("btn-warning");
+           $(this).removeClass("btn-primary");
+           $(this).removeClass("btn-info");
+            
+          switch (this.value) {
+            case "1":
+              $(this).addClass("btn-warning");
+              break;
+              case "2":
+              $(this).addClass("btn-primary");
+              break;
+              case "3":
+              $(this).addClass("btn-info");
+              break;
+               
+            default:
+              break;
+          }  } );
+        </script>
+          </div>
+          <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+       
+        <script>
+     $("#birthdate").datepicker({
+    language: "th",
+    startView: "year",
+    format:  'yyyy-mm-dd',
+    // format: 'dd/mm/yyyy',
+});
+$("#birthdate").datepicker("setDate", "2530-01-01");
+        </script>
+  </div>
+
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

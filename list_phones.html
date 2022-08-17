@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+   body{
+     background: #000;
+     color: white;
+   }
+  h3{
+     color: rgb(238, 255, 0);
+
+   }
+   .table{
+width:calc(100%)  !important;
+   }
+   /* .btn{
+     border: black;
+   background-color: white;
+    color: black;
+   } */
+ </style>
+</head>
+ 
+
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+ 
+<script type="text/javascript" src="asset/datatables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="asset/datatables.min.css"/>
+ 
+ 
+<body>
+  <div class="container-md ">
+      <h3 class="text-dark">เบอร์โทรภายใน</h3>
+      <div class=" row ">
+        <!-- <input class="form-control-sm mt-sm-0 mt-3  col-12 col-lg-3 p-3 p-sm-0" type="search" id="myInput" onkeyup="myFunction()" placeholder="ค้นหา">   -->
+         <!-- <button class="btn btn-warning col-lg-1 col-sm-2  col-4">ค้นหา</button> -->
+      <div class=" col text-end">
+<a class="btn btn-primary mt-sm-3 mt-3 mt-md-2 mt-lg-0 col-sm-5 col-12 col-lg-3  p-3 p-sm-1" href="?view=add&page=phones">เพิ่มข้อมูล</a>
+      </div>
+      </div>
+     <div class="btn-group"></div>
+      <hr> 
+      <?php  if(isset($tables) && !empty($tables) ){?>
+        <table class="table table-hover text-center  align-middle table-sm" id="myTables">
+          <thead class=" table-primary" >
+            <tr >
+          
+              
+              <td class="col th-sm" >เบอร์</td>
+              <td class="col th-sm" >ห้อง</td>
+              <td class="col th-sm" >ตึก</td>
+              <td class="col th-sm w-25"  >ตั้งค่า</td>
+            </tr>
+            
+          </thead>
+          <tbody class=" "  id="myTable">
+            <?php  echo @$tables ?>
+          </tbody>
+        </table>
+        
+        <?php  }else{?>
+          <h1 class="alert alert-danger">ไม่มีข้อมูล</h1>
+       <?php  }?>
+       
+  </div>
+  <script>
+    
+    $.extend(true, $.fn.dataTable.defaults, {
+    "language": {
+              "sProcessing": "กำลังดำเนินการ...",
+              "sLengthMenu": "แสดง_MENU_ แถว",
+              "sZeroRecords": "ไม่พบข้อมูล",
+              "sInfo": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+              "sInfoEmpty": "แสดง 0 ถึง 0 จาก 0 แถว",
+              "sInfoFiltered": "(กรองข้อมูล _MAX_ ทุกแถว)",
+              "sInfoPostFix": "",
+              "sSearch": "ค้นหา:",
+              "sUrl": "",
+              "oPaginate": {
+                            "sFirst": "เิริ่มต้น",
+                            "sPrevious": "ก่อนหน้า",
+                            "sNext": "ถัดไป",
+                            "sLast": "สุดท้าย"
+              }
+     }
+});
+    $(document).ready(function(){
+      $(".table").DataTable();
+    })
+  </script>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title" id="exampleModalLabel">ยื่นยันการลบ </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form class=""  action="?view=del&page=addmsg" method="post">
+        <div class="modal-body">
+      <div class="container ">
+        <input type="hidden"   name="id" id="myid"  readonly required>
+        <div class="row  ">
+          <h3>ยื่นยันารลบข้อมูล</h3>
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">ชื่อสิทธิ์</label> -->
+      <!-- <input type="text" id="myname" class="form-text form-control "   readonly  > -->
+    </div>
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">หน้าที่</label> -->
+      <!-- <input type="text" id="showname" class="form-text form-control "   readonly  > -->
+    </div>     
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-success">ยื่นยัน</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+
+ 
+</body>
+</html>

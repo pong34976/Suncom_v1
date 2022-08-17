@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มกำลังพล</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body><script> 
+function idcardw(text){
+  data = '<?php ckid()?>';
+  const idcard = JSON.parse(data);
+  try  
+{  
+  var country = idcard.find(el => el.idcard === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+function ckemail(text){
+  data = '<?php ckemail()?>';
+  const ckemail = JSON.parse(data);
+  try  
+{  
+  var country = ckemail.find(el => el.email === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+
+function ckphones(text){
+  data = '<?php ckphones()?>';
+  const ckphones = JSON.parse(data);
+  try  
+{  
+  var country = ckphones.find(el => el.phones === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+</script>
+  <div class="container-sm ">
+      <h3>เพิ่มกำลังพล</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=user">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+      <div class="row row-cols-auto">
+        <div class=" col-auto col-12  col-lg-8   ">
+            <label class="form-label mt-3">รหัสบัตรประชาชน</label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['idcard'];?> " name="idcard" id="idcard" placeholder="รหัสบัตรประชาชน" value="<?php echo @$idcard?>" required>
+          </div>
+          <script>
+            
+            $("#idcard").change(function(){
+              $("#idcard").next('p').remove();
+              $("#idcard").addClass("alert-success");
+            $("#idcard").removeClass("alert-danger");
+             if(idcardw($("#idcard").val())===true) {
+              $( "input,select,button,textarea" ).prop( "disabled", true );
+              $("#idcard" ).prop( "disabled", false );
+
+                   $("#idcard").removeClass("alert-success");
+              $("#idcard").addClass("alert-danger");
+              $("#idcard").after("<p class=' text-danger'>รหัสบัตรประชาชน มีอยู่ในระบบแล้ว กรุณากรอกใหม่อีกครั้ง</p>");
+             }else{
+              $("input,select,button,textarea" ).prop( "disabled", false );
+             
+             }
+});
+          </script>
+            <div class="input-group">
+        <div class=" col-auto col-12 col-lg-2 me-3">
+            <label class="form-label mt-3 ">ยศ. (คำนำหน้า) </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['prefix'];?> " name="prefix" id="prefix" placeholder="ยศ. (คำนำหน้า) " value="<?php echo @$prefix?>" required>
+          </div>
+          <div class=" col-auto col-12 col-lg-3 me-3">
+            <label class="form-label mt-3">ชื่อ </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required>
+          </div>
+          <div class=" col-auto col-12 col-lg-3 me-3">
+            <label class="form-label mt-3">นามสกุล </label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['lname'];?> " name="lname" id="lname" placeholder="นามสกุล" value="<?php echo @$lname?>" required>
+          </div>
+        </div>
+        
+        <div class="  form-check-inline col col-12 ps-2" >
+        
+            <label class="form-label  mt-3 ">เพศ</label>
+            <div class="  form-check form-check-inline  ">
+       <input type="radio"   class="border-primary form-check form-check-input "  name="sex" id="m"  value="ชาย"  <?php echo @$sexs["m"] ?>   >     
+       <label class="form-check-label" for="m">ชาย</label>
+    </div>
+    <div class="   form-check form-check-inline ">
+       <input type="radio"   class="border-danger form-check form-check-input  " name="sex" id="s"  value="หญิง"   <?php echo @$sexs["s"] ?> >     
+       <label class=" form-check-label  " for="s">หญิง</label>
+  </div>
+</div>
+<div class=" col-auto col-12  col-lg-8   ">
+  <label class="form-label mt-3">สังกัด</label>
+
+  <input type="text" class="form-control form-text  <?php echo @$err['affiliation'];?> " name="affiliation" id="affiliation" placeholder="สังกัด" value="<?php echo @$affiliation?>" required>
+</div>
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3  ">วันเกิด</label>
+       <input type="text" autocomplete="off" class="form-control form-text <?php echo @$err['birthdate'];?>" name="birthdate" id="birthdate"  value="<?php echo @$birthdate?>" placeholder="วันเกิด" required>     
+          
+          </div>
+          <div class=" col-auto col-12  col-lg-8   ">
+            <label class="form-label mt-3">อีเมล์</label>
+
+            <input type="email" class="form-control form-text  <?php echo @$err['email'];?> " name="email" id="email" placeholder="อีเมล์" value="<?php echo @$email?>" required>
+          </div>
+          <script>
+            
+            $("#email").change(function(){
+              $("#email").next('p').remove();
+              $("#email").addClass("alert-success");
+            $("#email").removeClass("alert-danger");
+             if(ckemail($("#email").val())===true) {
+              $( "input,select,button,textarea" ).prop( "disabled", true );
+              $("#email" ).prop( "disabled", false );
+
+                   $("#email").removeClass("alert-success");
+              $("#email").addClass("alert-danger");
+              $("#email").after("<p class=' text-danger'>อีเมล์ มีอยู่ในระบบแล้ว กรุณากรอกใหม่อีกครั้ง</p>");
+             }else{
+              $("input,select,button,textarea" ).prop( "disabled", false );
+             
+             }
+});
+          </script>
+          <div class=" col-auto col-12  col-lg-8   ">
+            <label class="form-label mt-3">เบอร์โทร</label>
+       
+            <input type="tel" class="form-control form-text  <?php echo @$err['phones'];?> " name="phones" id="phones" placeholder="เบอร์โทร" value="<?php echo @$phones?>" required>
+          </div>
+          <script>
+            
+            $("#phones").change(function(){
+              $("#phones").next('p').remove();
+              $("#phones").addClass("alert-success");
+            $("#phones").removeClass("alert-danger");
+             if(ckphones($("#phones").val())===true) {
+              $( "input,select,button,textarea" ).prop( "disabled", true );
+              $("#phones" ).prop( "disabled", false );
+
+                   $("#phones").removeClass("alert-success");
+              $("#phones").addClass("alert-danger");
+              $("#phones").after("<p class=' text-danger'>อีเมล์ มีอยู่ในระบบแล้ว กรุณากรอกใหม่อีกครั้ง</p>");
+             }else{
+              $("input,select,button,textarea" ).prop( "disabled", false );
+             
+             }
+});
+          </script>
+          <div class=" col-auto col-12  col-lg-8   ">
+            <label class="form-label mt-3">ที่อยู่ติดต่อ</label>
+       <textarea name="address" id="address" class="form-control form-text <?php echo @$err['idcard'];?> " cols="30" placeholder="ที่อยู่ติดต่อ...."  rows="10"><?php echo @$address?></textarea>
+            <!-- <input type="text" class="form-control form-text  <?php echo @$err['idcard'];?> " name="idcard" id="idcard" placeholder="รหัสบัตรประชาชน" value="<?php echo @$idcard?>" required> -->
+          </div>
+      
+          <div class=" col-auto col-12  col-lg-8 mb-3">
+            <label for="formFile" class="form-label">รูปภาพ</label>
+            <input class="form-control" type="file" name="userImage"  accept="image/png, image/gif, image/jpeg"  >
+         
+            <div class="progress" id="progress_bar" style="display:none; ">
+
+              <div class="progress-bar" id="progress_bar_process" role="progressbar" style="width:0%">0%</div>
+
+          </div>
+          <div id="targetLayer"></div>
+          <div id="loader-icon" style="display:none;"><img src="LoaderIcon.gif" /></div>
+          
+          </div>
+          <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+       
+        <script>
+     $("#birthdate").datepicker({
+    language: "th",
+    startView: "year",
+    format:  'yyyy-mm-dd',
+    // format: 'dd/mm/yyyy',
+});
+$("#birthdate").datepicker("setDate", "2530-01-01");
+        </script>
+  </div> 
+<!-- $(document).ready(function() { 
+  $('#uploadForm').submit(function(e) {	
+      if($('#userImage').val()) {
+          e.preventDefault();
+          $('#loader-icon').show();
+          $(this).ajaxSubmit({ 
+              target:   '#targetLayer', 
+              beforeSubmit: function() {
+                  $("#progress-bar").width('0%');
+              },
+              uploadProgress: function (event, position, total, percentComplete){	
+                  $("#progress-bar").width(percentComplete + '%');
+                  $("#progress-bar").html('<div id="progress-status">' + percentComplete +' %</div>')
+              },
+              success:function (){
+                  $('#loader-icon').hide();
+              },
+              resetForm: true 
+          }); 
+          return false; 
+      }
+  });
+});
+  -->
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

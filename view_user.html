@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขกำลังพล</title>
+</head>
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="css/icon/bootstrap-icons.css">
+ 
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/html5-3.6-respond-1.1.0.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body> 
+  <div class="container-sm ">
+      <h3>แสดงข้อมูล</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=user">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> แสดงข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <div class="card " id="printarea">
+        <div class=" row row-cols-auto h3 card-body  "  >
+          <div class=" col-xl-3  col-12 row ">
+            <div class="col-12">
+              <label class="text-center "> <img  class="img-fluid col-12" src="images/<?php echo $img;?>" alt="" srcset=""> 
+                <button class="btn col-12  btn-success mt-2 bi-printer" onclick="printDiv()  "> พิมพ์</button> 
+              </label>
+          
+            
+          
+            </div></div>
+           <div class="  col-lg-9 col-12 row  ">
+              <div class="  col-12   ">
+            <label class="form-label mt-3 text-dark">รหัสบัตรประชาชน : </label>
+            <label class="form-label mt-3 "><?php echo @$idcard?></label>
+              </div>
+
+              <div class="   col-12 col-lg-6 ">
+                <label class="form-label mt-3">ชื่อ-นามสกุล : </label>
+                <label class="form-label mt-3 "><?php echo @$prefix?> <?php echo @$rname?> <?php echo @$lname?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+
+              <div class="   col-12 col-lg-6 ">
+                <label class="form-label mt-3">เพศ: </label>
+                <label class="form-label mt-3 "><?php echo @$sex?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+
+
+
+           
+
+           
+
+              <div class="   col-12 col-lg-6 ">
+                <label class="form-label mt-3">เบอร์โทร </label>
+                <label class="form-label mt-3 "><?php echo @$phones?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+              <div class="   col-12 col-lg-6 ">
+                <label class="form-label mt-3">วันเกิด: </label>
+                <label class="form-label mt-3 "><?php echo ckdate(@$affiliation,true)?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+              
+              <div class="   col-12 col-lg-12 ">
+                <label class="form-label mt-3 ">สังกัด: </label>
+                <label class="form-label mt-3 "><?php echo @$affiliation?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+              <div class="   col-12   ">
+                <label class="form-label mt-3">อีเมล์ </label>
+                <label class="form-label mt-3 "><?php echo @$email?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+
+              <div class="   col-12   ">
+                <label class="form-label mt-3">ที่อยู่ติดต่อ: </label>
+                <label class="form-label mt-3 "><?php echo @$address?></label>
+                <!-- <input type="text" class="form-control form-text  <?php echo @$err['rname'];?> " name="rname" id="rname" placeholder="ชื่อ " value="<?php echo @$rname?>" required> -->
+              </div>
+    </div> 
+       
+ 
+         
+
+         
+        
+       
+         
+
+        
+        
+          
+             </div>
+             <!-- <div class="d-flex  col-auto col-12 col-lg-8">
+               <button class="btn btn-success mt-2 bi-printer" onclick="printDiv()  "> พิมพ์</button></div>
+      <script>
+        function printDiv() 
+{
+
+  $("#printarea").printThis();
+}
+      </script>
+            </div> -->
+        
+       
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

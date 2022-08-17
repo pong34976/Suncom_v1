@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม ข้อมูลสิทธิ์</title>
+</head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/bootstrap-"></script>
+<body>
+  <div class="container-sm ">
+      <h3>ข้อมูลสิทธิ์</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=pmis">รายการสิทธิ์</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+ 
+ </nav>
+
+      <hr> <form action="" method="post">
+      <div class="row row-cols-auto">
+
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3">ชื่อสิทธิ</label>
+       
+            <input type="text" class="form-control form-text  <?php echo @$err['pmiss'];?> " name="pmiss" id="pmiss" placeholder="ชื่อสิทธิ" value="<?php echo @$pmiss?>" required>
+          </div>
+     
+          <div class=" col-auto col-12 col-lg-8">
+            <label class="form-label mt-3">หน้าที่</label>
+            <input  type="text" class="form-control form-text <?php echo @$err['showname'];?>" name="showname" id="showname"  value="<?php echo @$showname?>" placeholder="ตำแหน่ง" required>
+          </div>
+          <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+  </div>
+  
+
+ 
+</body>
+</html>

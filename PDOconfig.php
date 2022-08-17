@@ -1,0 +1,11 @@
+<?php
+ public class PDOconfig()
+ {
+   
+ }
+ ?>
+ 
+
+
+ 
+ 

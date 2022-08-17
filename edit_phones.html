@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขเบอร์โทร</title>
+</head>
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body>
+  <div class="container-sm ">
+      <h3>แก้ไขเบอร์โทร</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=phones">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> แก้ไขข้อมูลสิทธิ์ </li>
+  </ol>
+  
+ </nav>
+
+      <hr>  <form action="" method="post">
+        <div class="row row-cols-auto">
+          <div class=" col-auto col-12 col-lg-8">
+              <label class="form-label mt-3">เบอร์</label>
+              <input type="hidden"     name="id" id="id" placeholder="id" value="<?php echo @$id?>" required>
+              <input type="text"   class="form-control form-text  <?php echo @$err['number'];?> " name="number" id="number" placeholder="number" value="<?php echo @$number?>" required>
+            </div>
+             
+            <div class=" col-auto col-12 col-lg-8">
+              <label class="form-label mt-3">ห้อง</label>
+         
+              <input type="text"   autocomplete="off"  class="form-control form-text  <?php echo @$err['room'];?> " name="room" id="room" placeholder="room" value="<?php echo @$room?>" required>
+            </div>
+         
+            <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+        
+          </div>  </form>
+       
+     
+  </div>
+
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .a ~ s{
+
+    }
+  </style>
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+</head>
+ 
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script> -->
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="asset/datatables.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="asset/datatables.min.css"/>
+<!-- data select -->
+<script type="text/javascript" src="asset/Select-1.3.4/js/dataTables.select.min.js"></script>
+<link rel="stylesheet" type="text/css" href="asset/DataTables-1.11.4/css/dataTables.dataTables.min.css"/>
+ <!-- data select -->
+ <script type="text/javascript" src="asset/Buttons-2.2.2/js/buttons.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="asset/Buttons-2.2.2/css/buttons.dataTables.min.css"/>
+<body>
+  <div class="container-md ">
+      <h3 class="text-dark">ระบบควบคุมอุปกรณ์ส่งซ่อมภายใน </h3>
+      <small><?php echo @VER?></small>
+      <script>
+  
+      </script>
+<?php if(isset($_SESSION["level"])){
+  if( $_SESSION["level"] ==1){
+  ?>
+  <link rel="stylesheet" href="css/global.css">
+      <div class=" ">
+ <button type="button" class="btn btn-primary btn-add" onclick="showcreate('add')" data-bs-toggle="button" aria-pressed="false"  >เพิ่มข้อมูล</button>
+ <button type="button" class="btn btn-warning btn-edit "  onclick="showcreate('edit')" data-bs-toggle="button" aria-pressed="false"  disabled >แก้ไขข้อมูล</button>
+ <button type="button" class="btn btn-danger btn-edit " data-bs-toggle="modal" data-bs-target="#pdfModal" aria-describedby="helpId"   id="btn-pdf" data-bs-toggle="button"   aria-pressed="false"  disabled value="" >PDF</button>
+ <button type="button" class="btn btn-danger btn-edit " data-bs-toggle="modal" data-bs-target="#exampleModal" aria-describedby="helpId"   id="btn-pdf" data-bs-toggle="button"   aria-pressed="false"  disabled value="" >ลบ</button>
+ 
+  <?php }}?>
+  <script>
+
+  </script>
+    <form class="form-add   card " id="form-add" style="display: none;"  action="" method="post">
+<div class="card-header bg-secondary  text-white">xxx </div>
+<!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick=" $('.form-add ').hide()"></button> -->
+<div class="showta"></div>
+<div class="card-body row">
+ 
+  <div class="mb-3 col-12  ps-6 pe-6 ms-6 me-6">
+    <label for="" class="form-label">TOKEN</label>
+    <input type="text" class="form-control"  name="token"    value="<?php echo TOKEN?>"  readonly   aria-describedby="helpId" placeholder="">
+    <small id="helpId" class="form-text text-muted">ใช้แค่ทดสอบ</small>
+  </div>    
+  <div class="mb-3 col-12 col-xl-2  " style="display: none;"> 
+    <label for="" class="form-label">Action</label>
+    <input type="text" class="form-control"  id="action"   aria-describedby="helpId" readonly placeholder="">
+    <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+  </div>
+          <div class="mb-3 col-12 col-xl-2  input action">
+            <label for="" class="form-label">เลขรับ</label>
+            <input type="text" class="form-control" name="id_repair" id="id_repair" readonly    aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">วันที่รับ</label>
+            <input type="date" class="form-control input" name="re_date_received" id="re_date_received"  aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">วันที่คืน</label>
+            <input type="date" class="form-control input" name="re_due_date" id="re_due_date"  aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+       
+      <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">เลข คุรุ</label>
+            <div class="btn-group">
+            <input type="text" class="form-control input" name="re_serial_number" id="re_serial_number"    aria-describedby="helpId" placeholder="">
+  <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#kuluModal" aria-describedby="helpId" placeholder="">
+    ค้น</button>
+          </div>
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">ประเภท</label>
+            <select class="form-control input" name="re_type" id="re_type"   aria-describedby="helpId" placeholder="" >
+              <option value="">-เลือก-</option>
+              <option value="ปริ้นเตอร์">ปริ้นเตอร์</option>
+              <option value="คอมพิวเตอร์">คอมพิวเตอร์</option>
+              <option value="โน๊ตบุ๊ค">โน๊ตบุ๊ค</option>
+              <option value="สำรองไฟ">สำรองไฟ</option>
+            </select>
+            <!-- <input type="text" class="form-control input" name="re_type" id="re_type"    aria-describedby="helpId" placeholder=""> -->
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">ยี่ห้อ/รุ่น</label>
+            <input type="text" class="form-control input" name="re_model" id="re_model"  aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+          <div class="mb-3 col-12 col-xl-2">
+            <label for="" class="form-label">อาการ</label>
+            <input type="text" class="form-control input" name="re_breakdown" id="re_breakdown"  aria-describedby="helpId" placeholder="">
+          </div>
+     <div class="mb-3 col-12 col-xl-2">
+       <label for="" class="form-label">การดำเนนการ</label>
+       <input type="text" class="form-control input" name="re_operation" id="re_operation"  aria-describedby="helpId" placeholder="">
+     </div>
+<div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">หน่วยงาน</label>
+            <input type="text" class="form-control input" name="re_agency" id="re_agency"   aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+       <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">ผู้ประเมิน</label>
+            <input type="text" class="form-control input" name="re_assessor" id="re_assessor"   aria-describedby="helpId" placeholder="">
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>   
+ 
+<div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">สถานะ</label>
+            <!-- <input type="text" class="form-control input" name="re_status" id="re_status"  onkeyup="upstatus()"  aria-describedby="helpId" placeholder=""> -->
+            <select class="form-control input" name="re_status" id="re_status"  onchange="upstatus()"  aria-describedby="helpId" placeholder="">
+           <option value="รอตรวจสอบ">รอตรวจสอบ</option>    <option value="กำลังดำเนินการ">กำลังดำเนินการ</option> <option value="เสร็จ">เสร็จ</option>
+            </select>
+         
+           
+            
+            <div class="btn-group sta">
+             
+          <button type="button" class="btn primary btn-primary" disabled></button>    <button type="button"  class="btn    warning btn-warning" disabled></button>    <button type="button"  class="btn    success btn-success" disabled></button>
+      <script>
+      
+      </script>
+        </div>
+            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
+          </div>
+   <!-- <div class="mb-3 col-12 col-xl-2 ">
+            <label for="" class="form-label">เก็บไว้ที่</label>
+            <input type="text" class="form-control input" name="re_locaction" id="re_locaction"   aria-describedby="helpId" placeholder="">
+           
+          </div>    -->
+            
+          <div class="mb-3   col-12 col-xl-2 ">
+            <label for="" class="form-label ">ส่งภายนอก/ส่งคืน</label>
+            <div class="form-check form-switch  ">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="re_sendreport" value="option1" />
+              <!-- <input class="form-check-input" type="checkbox" id="re_sendreport" value="1"  name="re_sendreport" > -->
+              <label class="form-check-label" for="re_sendreport">ส่งซ่อมภายใน</label>
+            </div>
+            <div class="form-check form-switch  ">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="re_sendreport" value="option1" />
+              <!-- <input class="form-check-input" type="checkbox" id="re_sendreport" value="1"  name="re_sendreport" > -->
+              <label class="form-check-label" for="re_sendreport">ส่งซ่อมภายนอก</label>
+            </div>
+          
+            <div class="form-check form-switch  ">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="re_sendreport" value="option2" />
+              <label class="form-check-label" for="re_sendreturn">ส่งคืน</label>
+            </div>
+          </div>   
+        </div>
+        <div class=" col text-center">
+          
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.css" />
+          <style>
+      
+ .select2-hidden-accessible,span.select2-selection.select2-selection--single{
+                 display:inline-block;
+           width: auto !important;
+           height: 40px !important;
+        
+          }
+          .select2-hidden-accessible,span.select2-selection.select2-selection--single div{
+            display:inline-block;
+      
+          }
+         </style> 
+         
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
+<script type="text/javascript">
+  $dataoj =  $.ajax({
+    url :"model/equip.php?keyword=view", // json datasource
+      type: "post"})
+      .done(function( html ) { 
+        $('#id_select2_example').html("");
+        var data = Array();
+ 
+        
+       
+        html.data.forEach(element => {
+          
+            data = {
+            id: element[0],
+            text: element[2],
+            img_src: element[3]
+        };
+  data2 = custom_template(data);
+      
+        });
+       
+     $('#id_select2_example').select2(data2);
+      
+      });
+  
+  function custom_template(obj){
+        //  var data = $(obj.element).data();
+        //  var text = $(obj.element).text();
+         var da = obj.id;
+         var text = obj.text;
+          if(obj.img_src){
+              img_src = obj.img_src;
+              template = $("<div style=\"font-weight: 700;font-size:14pt;text-align:center;\"><img src=\"" + img_src + "\" style=\"width:30px;height:30px;\"/>" + text + "</div> ");
+              return template;
+          }
+      }
+      
+ 
+
+</script>
+
+ 
+
+ <button type="submit" id="readd" class="btn readd btn-primary ">บันทึก</button>
+  <button type="reset" class="btn  btn-danger " onclick=" $('.form-add ').hide()">ปิด</button>
+ 
+  </div>
+        </form>
+        <form class="form-add   card"   style="display: none;"  action="" method="post">
+      
+  
+        
+       
+
+         </form>
+      
+      </div>
+      <div class=" row ">
+      <div class=" col text-end">
+      </div>
+      </div>
+     <div class="btn-group"></div>
+ 
+   
+        <table class="table table-hover text-center  align-middle table-sm" id="myTables">
+          <thead class=" table-primary " >
+            <tr >
+ 
+     
+            </tr>
+            
+          </thead>
+     <tbody>
+      <tr >
+ 
+
+      </tr>
+     </tbody>
+           
+        </table>
+        
+ 
+ 
+       
+  </div>
+  
+ <script>
+   </script>
+  <script>
+    
+  </script>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content ">
+        <div class="modal-header bg-danger">
+          <h5 class="modal-title" id="exampleModalLabel">ยื่นยันการลบ </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <form class="form-del"  id="form-del"   method="post">
+        <div class="modal-body">
+      <div class="container ">
+        <input type="hidden"   name="id" id="myid"  readonly required>
+        <div class="mb-3 col-12  ps-6 pe-6 ms-6 me-6">
+          <label for="" class="form-label">TOKEN</label>
+          <input type="text" class="form-control"  name="token"    value="<?php echo TOKEN?>"  readonly   aria-describedby="helpId" placeholder="">
+          <small id="helpId" class="form-text text-muted">ใช้แค่ทดสอบ</small>
+        </div> 
+        <h3 id="delname">xxx</h3> 
+        <div class="row  ">
+      
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">ชื่อสิทธิ์</label> -->
+      <!-- <input type="text" id="myname" class="form-text form-control "   readonly  > -->
+    </div>
+    <div class="col col-12">
+      <!-- <label class="form-label" for="id">หน้าที่</label> -->
+      <!-- <input type="text" id="showname" class="form-text form-control "   readonly  > -->
+    </div>     
+  </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="submit"  class="btn btn-success">ลบ</button>
+        </div>
+       </form>
+    
+      </div>
+    </div>
+  </div>
+      <!-- position-fixed  -->
+   
+
+         <div class="modal fade" id="kuluModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content ">
+            <div class="modal-header bg-secondary">
+              <h5 class="modal-title" id="exampleModalLabel">ค้นเลข </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class=""  action="?view=del&page=addmsg" method="post">
+            <div class="modal-body">
+          <div class="container ">
+            <input type="hidden"   name="id" id="myid"  readonly required>
+            <div class="row  ">
+              <h3>ค้นคุรุ</h3>
+     
+          <label class="form-label" for="id">ค้นคุรุ</label> 
+          <div class="btn-group">
+
+  <input type="text" id="id" class="form-text form-control "    readonly  >
+   <input type="text" id="total" class="form-text form-control "   readonly   >
+  <input type="text" id="detal" class="form-text form-control "   readonly   >
+   
+          </div>
+        
+
+
+          <table id="tablekulu" width="100%" class="table table-hover bg-secondary text-white  text-center  align-middle table-sm">
+            <thead class="bg-dark">
+              <!-- <tr>
+                <td width="10%">ภาพ</td>
+                <td>เลข</td>
+                <td>ประเภท</td>
+                <td>รายละเอียด</td>
+              </tr> -->
+
+            </thead>
+             <tbody>
+            <tr>
+            <td><img width="100" height="100"  src="imagesystem/null.png"> </td>
+            <td>588/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP LaserJet Pro M402-M403</td>
+          </tr>
+          <tr>
+            <td><img width="100" height="100" src="images/H1102.webp"> </td>
+            <td>585/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP Laserjet 1102</td>
+          </tr>
+        </tbody>
+          </table>
+         
+       
+  
+      </div>
+          </div>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn  btn-danger"  onclick="kuluclose()">Close</button>
+              <button type="button"  class="btn btn-success kulu-ok" >ยื่นยัน</button>
+            </div>
+           </form>
+        
+          </div>
+        </div>
+      </div>
+<!-- end kulu -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header bg-secondary">
+        <h5 class="modal-title" id="exampleModalLabel">  </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class=""    method="post">
+      <div class="modal-body">
+    <div class="container ">
+      <input type="hidden"   name="id" id="myid"  readonly required>
+      <div class="row  ">
+        <h3>PDF  </h3>
+        <small>B.001</small>
+<iframe id="show-pdf" src="" width="100%" height="500px" frameborder="0"></iframe>
+   
+    <div class="btn-group">
+
+ 
+
+    </div>
+   </div>
+    </div>
+      </div>
+
+
+
+
+      <div class="modal-footer">
+        
+        <button type="button" class="btn  btn-danger"  onclick="pdfclose()">Close</button>
+        <!-- <button type="button"  class="btn btn-success kulu-ok" >ยื่นยัน</button> -->
+      </div>
+     </form>
+  
+    </div>
+  </div>
+</div>
+<!--  -->
+    <!-- position-fixed  -->
+   
+
+         <div class="modal fade" id="kuluModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content ">
+            <div class="modal-header bg-secondary">
+              <h5 class="modal-title" id="exampleModalLabel">ค้นเลข </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class=""  action="?view=del&page=addmsg" method="post">
+            <div class="modal-body">
+          <div class="container ">
+            <input type="hidden"   name="id" id="myid"  readonly required>
+            <div class="row  ">
+              <h3>ค้นคุรุ</h3>
+     
+          <label class="form-label" for="id">ค้นคุรุ</label> 
+          <div class="btn-group">
+
+  <input type="text" id="id" class="form-text form-control "    readonly  >
+   <input type="text" id="total" class="form-text form-control "   readonly   >
+  <input type="text" id="detal" class="form-text form-control "   readonly   >
+   
+          </div>
+        
+
+
+          <table id="tablekulu" width="100%" class="table table-hover bg-secondary text-white  text-center  align-middle table-sm">
+            <thead class="bg-dark">
+              <!-- <tr>
+                <td width="10%">ภาพ</td>
+                <td>เลข</td>
+                <td>ประเภท</td>
+                <td>รายละเอียด</td>
+              </tr> -->
+
+            </thead>
+             <tbody>
+            <tr>
+            <td><img width="100" height="100"  src="imagesystem/null.png"> </td>
+            <td>588/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP LaserJet Pro M402-M403</td>
+          </tr>
+          <tr>
+            <td><img width="100" height="100" src="images/H1102.webp"> </td>
+            <td>585/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP Laserjet 1102</td>
+          </tr>
+        </tbody>
+          </table>
+         
+       
+  
+      </div>
+          </div>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn  btn-danger"  onclick="kuluclose()">Close</button>
+              <button type="button"  class="btn btn-success kulu-ok" >ยื่นยัน</button>
+            </div>
+           </form>
+        
+          </div>
+        </div>
+      </div>   <!-- position-fixed  -->
+   
+
+         <div class="modal fade" id="kuluModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content ">
+            <div class="modal-header bg-secondary">
+              <h5 class="modal-title" id="exampleModalLabel">ค้นเลข </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class=""  action="?view=del&page=addmsg" method="post">
+            <div class="modal-body">
+          <div class="container ">
+            <input type="hidden"   name="id" id="myid"  readonly required>
+            <div class="row  ">
+              <h3>ค้นคุรุ</h3>
+     
+          <label class="form-label" for="id">ค้นคุรุ</label> 
+          <div class="btn-group">
+
+  <input type="text" id="id" class="form-text form-control "    readonly  >
+   <input type="text" id="total" class="form-text form-control "   readonly   >
+  <input type="text" id="detal" class="form-text form-control "   readonly   >
+   
+          </div>
+        
+
+
+          <table id="tablekulu" width="100%" class="table table-hover bg-secondary text-white  text-center  align-middle table-sm">
+            <thead class="bg-dark">
+              <!-- <tr>
+                <td width="10%">ภาพ</td>
+                <td>เลข</td>
+                <td>ประเภท</td>
+                <td>รายละเอียด</td>
+              </tr> -->
+
+            </thead>
+             <tbody>
+            <tr>
+            <td>
+              <img width="100" height="100"  src="imagesystem/null.png"> </td>
+            <td>588/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP LaserJet Pro M402-M403</td>
+          </tr>
+          <tr>
+            <td><img width="100" height="100" src="images/H1102.webp"> </td>
+            <td>585/58</td>
+            <td>ปริ้นเตอร์</td>
+            <td>HP Laserjet 1102</td>
+          </tr>
+        </tbody>
+          </table>
+         
+       
+  
+      </div>
+          </div>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn  btn-danger"  onclick="kuluclose()">Close</button>
+              <button type="button"  class="btn btn-success kulu-ok" >ยื่นยัน</button>
+            </div>
+           </form>
+        
+          </div>
+        </div>
+      </div>
+<!--  -->   <!-- position-fixed  -->
+   
+
+<div class="modal fade" id="addojModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header bg-secondary">
+        <h5 class="modal-title" id="exampleModalLabel">xxx </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class=""  action="?view=del&page=addmsg" method="post">
+      <div class="modal-body">
+    <div class="container ">
+      <input type="hidden"   name="id" id="myid"  readonly required>
+      <div class="row  ">
+        <h3>ค้นคุรุ</h3>
+
+    <label class="form-label" for="id">ค้นคุรุ</label> 
+    <div class="btn-group">
+
+<input type="text" id="number" class="form-text form-control "    readonly  >
+<input type="text" id="oj" class="form-text form-control "   readonly   >
+<input type="text" id="blan" class="form-text form-control "   readonly   >
+<input type="text" id="blan" class="form-text form-control "   readonly   >
+    </div>
+  
+
+
+    <table id="tableaddoj" width="100%" class="table table-hover bg-secondary text-white  text-center  align-middle table-sm">
+      <thead class="bg-dark">
+        <!-- <tr>
+          <td width="10%">ภาพ</td>
+          <td>เลข</td>
+          <td>ประเภท</td>
+          <td>รายละเอียด</td>
+        </tr> -->
+
+      </thead>
+       <tbody>
+      <tr>
+      <td><img width="100" height="100"  src="imagesystem/null.png"> </td>
+      <td>588/58</td>
+      <td>ปริ้นเตอร์</td>
+      <td>HP LaserJet Pro M402-M403</td>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" src="images/H1102.webp"> </td>
+      <td>585/58</td>
+      <td>ปริ้นเตอร์</td>
+      <td>HP Laserjet 1102</td>
+    </tr>
+  </tbody>
+    </table>
+   
+ 
+
+</div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn  btn-danger"  onclick="ojclose()">Close</button>
+        <button type="button"  class="btn btn-success oj-ok" >add</button>
+      </div>
+     </form>
+  
+    </div>
+  </div>
+</div>
+<!--  -->
+      <script src="js/model/repair.js">
+    
+                 </script>
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header text-white">
+      <i class="bi bi-hdd"></i>
+      <strong class="me-auto "> </strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+     
+    </div>
+  </div>
+</div>
+</body>
+</html>

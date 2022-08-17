@@ -1,0 +1,391 @@
+ 
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <!-- UIkit CSS -->
+ 
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit-icons.min.js"></script>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                   <style>
+                       .navbar-brand{
+                           display: block;
+                           text-align: center;
+                            size: 80px;
+                       }
+                      .container-fluid{
+                        /* display: block; */
+                           text-align: center;  
+                      }
+                      h4{
+                          display:block !important;
+                      }
+                      .bgcol{
+                          /* background-color:lightseagreen; */
+                      }
+                   </style>
+         
+                </head>
+                <body class="bg-light"  >
+                 
+                       <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
+                        <div class="container-fluid  "> 
+                          <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+                <link rel="stylesheet" type="text/css" href="css/icon/bootstrap-icons.css"/>
+                        <!-- <h4> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                              </svg>.. Call Center</h4> -->
+                              <div class="waviy">
+                                <?php $ran = rand(0,1);
+                              
+                                
+                                ?>
+                              <h4></h4>  <span style="--i:0"> <img src="<?php echo     ($ran==1 ? 'imagesystem/computer-science.png' : 'imagesystem/binary-codes.png' )?>" width="40" he20ight="40" alt="" srcset=""> </span> 
+                              <span style="--i:1"> </span>
+                              <span style="--i:1x"> </span>
+                              <span style="--i:2"> </span>
+                              <span style="--i:3">C</span>
+                                <span style="--i:4">o</span>
+                                <span style="--i:5">m</span>
+                                <!-- <span style="--i:6"> </span> -->
+                                <span style="--i:7"></span>
+                                <span style="--i:8">C</span>
+                                <span style="--i:9">e</span>
+                                <span style="--i:10">n</span>
+                                <span style="--i:11">t</span>
+                                <span style="--i:12">e</span>
+                                <span style="--i:13">r</span>
+                                <span style="--i:14">.</span>
+                                <span style="--i:14"></span>
+                              </h4>
+                               </div>
+                              <!-- <a href="" class="navbar-brand text-dark "></a> -->
+
+                              <div href="" class="navbar-brand text-end"> 
+                                <!-- <a class="me-3 text-light  bi-nut" href="http://"></a> -->
+                                <a class=" text-light   <?php echo  (LEVEL == 0 ? 'bi-lock' : 'bi-unlock')?>" href="logout.php"></a>
+                                <!-- bi-box-arrow-right -->
+                             
+                              </div>
+                           
+                         </div>   
+                
+                       </nav>
+                       <div class="container-fluid">
+                        <div class="row flex-nowrap">
+                            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark  ">
+                                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                                        <span class="fs-5 d-none d-sm-inline text-info"> <h4> ทางลัด </h4><small><?php echo VER?></small></span>
+                                    </a>
+                                 
+                                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start text-wrap h4" id="menu">
+                                 
+                                          <li class="nav-item">
+                                            <a href="?view=list&page=repair" class="nav-link align-middle px-0 ">
+                                                <span style="--i:1"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                <img src="imagesystem/Picture1.png"  height="45px" alt=""><br>
+                                                  </svg> <span class="   ms-1 d-none d-sm-inline text-warning  ">ส่งซ่อมภายใน</span>
+                                            </a>
+                                            
+                                        </li>
+                                        <li class="nav-item">
+                                          <a href="?view=list&page=serial" class="nav-link align-middle px-0 ">
+                                              <span style="--i:1"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                <img src="imagesystem/Picture2.png"  height="45px" alt=""><br>
+                                                </svg> <span class="   ms-1 d-none d-sm-inline text-warning  ">รายการครุภัณฑ์</span>
+                                          </a>
+                                          
+                                      </li>
+                                        <li class="nav-item">
+                                          <a href="?view=list&page=hardware" class="nav-link align-middle px-0 ">
+                                              <span style="--i:1"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                  <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                                                  <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                </svg> <span class="   ms-1 d-none d-sm-inline text-warning  ">รุ่น/ยี่ห้อ </span>
+                                          </a>
+                                          
+                                      </li>
+                                      <li class="nav-item">
+                                        <a href="?view=list&page=equip" class="nav-link align-middle px-0 ">
+                                            <span style="--i:1"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                              </svg> <span class="   ms-1 d-none d-sm-inline text-warning  ">วัสดุ </span>
+                                        </a>
+                                        
+                                    </li>
+                                           <li class="nav-item">
+                                        <a href="?view=list&page=phones" class="nav-link align-middle px-0 ">
+                                            <span style="--i:1"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                                <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                                                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                              </svg> <span class="   ms-1 d-none d-sm-inline text-warning  ">เบอร์โทรภายใน</span>
+                                        </a>
+                                        
+                                    </li>
+                                        <li class="nav-item">
+                                            <a href="http://172.17.250.241/index.php?searchuser" target="_new" class="nav-link align-middle px-0 ">
+                                                <i class="bi bi-globe"></i> <span class="   ms-1 d-none d-sm-inline text-warning  ">หลังบ้านอินเทอร์เน็ต</span>
+                                            </a>
+                                            
+                                        </li>
+                                   
+                                           <li class="nav-item">
+                                            <a href="http://49.231.187.200/webmail/" target="_new" class="nav-link align-middle px-0 ">
+                                                <i class="bi bi-mailbox2"></i>    <span class="   ms-1 d-none d-sm-inline text-warning  ">รับ-ส่งหนังสือเวียนภายใน</span>
+                                            </a>
+                                            
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="http://172.17.250.99/" target="_new" class="nav-link align-middle px-0 ">
+                                                <i class="bi bi-file-earmark-plus-fill"></i>    <span class="   ms-1 d-none d-sm-inline text-warning  ">เว็บโรงพยาบาลพระนารายณ์มหาราช</span>
+                                            </a>
+                                            
+                                        </li>
+                                    </ul>
+                                    <hr>
+                                    <!-- <div class="dropdown pb-4 "> 
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="col py-3">
+                              <?php include_once("control.php")?>
+                            </div>
+                        </div>
+                    </div>      </div>
+                    <style>
+                        /* @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap'); */
+                        * {
+                          padding: 0;
+                          margin: 0;
+                          box-sizing: border-box;
+                        }
+                        
+                         
+                        .waviy {
+                          position: relative;
+                          -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0,0,0,.2)); 
+                           font-size: 30px;
+                        /*  font-size: 60px; */
+                        }
+                        .waviy span {
+                          /* font-family: 'Alfa Slab One', cursive; */
+                          position: relative;
+                          display: inline-block;
+                          color: #fff;
+                          text-transform: uppercase;
+                          animation: waviy 2.5s infinite;
+                          animation-delay: calc(.1s * var(--i));
+                          
+                        }
+
+                        @keyframes waviy {
+                          0%,40%,100% {
+                            transform: translateY(0)
+                          }
+                          20% {
+                            transform: translateY(-20px)
+                          }
+                        }
+                        .nav-item{
+                            width: 100% !important;
+                        }
+                        .nav-item  a:hover{
+                            width: 100% !important;
+                            animation: mousesel  1s infinite;
+                          
+                            -webkit-box-reflect: below -30px linear-gradient(transparent, rgba(0,0,0,.2)); 
+                        }
+                        @keyframes mousesel {
+                         
+                            0%,40%,100% {
+                            transform: translateY(1px)
+                          }
+                          20% {
+                            transform: translateY(-10px)
+                          }
+                        }
+                        .message-mali{
+                          list-style-type:none;
+                        }
+                        </style>
+                        <!-- display: none; 004731 ชาง-->
+                        
+                        <div class="fixed  "   style="display: none;" >  <!-- fixed 1-->
+                          <div class="card"> <!-- card 2-->
+                            <div class="card-head btn-primary p-1 "  ><input type="hidden" id="count"><i class="bi bi-mailbox2 ">จดหมาย</i> 
+                            
+                              <button class="btn-sm btn-close btn-danger  d-flex  float-end bt-tog" ></button>
+                            </div>  <!-- mailbox2 3 2-->
+                            <div id="card-body" class="card-body row col p-0 m-0 overflow-auto "  > <!-- body 3-->
+                              <div class="form-contron msgbox">  <!-- contron 4-->
+                                <sav class="message-mali   d-flex align-items-start flex-column bd-highlight mb-2 me-2 ">
+                                  <li  class="btn-sm btn-success    ">นายๆ</li>
+                                </sav>
+                                <sav class="message-mali  d-flex align-items-end flex-column bd-highlight mb-2 ms-2  ">
+                                  <li  class="btn-sm btn-primary  ">มีอะไร</li>
+                                </sav>  
+                                <sav class="message-mali   d-flex align-items-start flex-column bd-highlight  mb-2 me-2">
+                                  <li  class="btn-sm btn-success    ">ICU ศัลย.ระบบประสาท อยู่ที่ไหน ผมหานานแล้ว หาไม่เจอ ถ้ารู้ช่วยบอกที น๊า ... </li>
+                                </sav>
+                                <sav class="message-mali  d-flex align-items-end flex-column bd-highlight mb-2 ms-2 ">
+                                  <li  class="btn-sm btn-primary  ">เดินลงไปชั้น 1 ไปทางเซเว่น ก่อนถึงเซเว่นจะมีทางแยกให้เลี้ยวขวา จะมีตึกสีชมพู เดินไปชั้น2 น่ะ</li>
+                                </sav>
+                                <sav class="message-mali   d-flex align-items-start flex-column bd-highlight  mb-2 me-2">
+                                  <li  class="btn-sm btn-success    ">โอ เคร เจอแล้ว ขอบใจมาก</li>
+                                </sav>
+                                <div class="loadmg m-2"></div>  <!-- /loadmg 5 4-->
+                              </div> <!-- /contron 3--> 
+                            </div> <!-- /body 2-->
+                            <div class="card-footer" ><!-- footer 3  -->
+                              <form id="msg-in"  action="javascript:alert( 'success!' );"  target="post">
+                                <input type="hidden" name="userid" id="userid" value="<?php echo (isset($_SESSION['log_id']) ?  $_SESSION['log_id']  : '0')?>">
+                                <input   name="date_msg" type="hidden" value="<?php echo date('yy-m-d')?>">
+                              <input class="form-contron form-text  " id="message" name="message" type="text" autocomplete="off"  placeholder="ใส่ข้อความ....">
+                              <input type="submit" name="subin"   class="btn-sm btn-primary   form-text pt-0 mt-0 pb-0 mb-0" value="ส่ง">
+                            </form>
+                            </div><!-- /footer 2-->
+                          </div><!-- /card 1-->
+                        <div><!-- /fixed 0 -->
+                        </div> </div>
+           <!-- btn-sm btn-primary -->
+  <div class="bt"> 
+    <button type="button" class="btn-sm  bt-img bt-tog"  >
+    <!-- <i class="bi bi-mailbox2"></i> -->
+  </button> </div> 
+                  
+                    <script >
+                      
+                  var automsg = 0;
+          
+ $(document).ready(function(){
+
+   $(".msgbox").html("");
+var member = `<?php echo (isset($_SESSION['log_id']) ?  $_SESSION['log_id']  : '0')?>`;
+var log=0;
+ 
+setInterval(function(){ 
+
+  $.ajax({
+  dataType: "json",
+  url:  "api.php?key=countdata",
+  success: function(data){
+    $("#count").val(data[0]);
+  }  
+  
+}); 
+  // console.log(`${log} // ${$("#count").val()}`)
+ 
+
+if(log< $("#count").val()){
+  $.ajax({
+  dataType: "json",
+  url:  "api.php?key=msgdata",
+  success: function(data){
+    for(log = log ; log< $("#count").val(); log++){
+      members = ` <sav class="message-mali   d-flex align-items-start flex-column bd-highlight  mb-2 me-2">
+                                  <li  class="btn-sm btn-success    ">${data[log][1]}</li> </sav>`;
+if(data[log][3]==member){
+ members = `<sav class="message-mali  d-flex align-items-end flex-column bd-highlight mb-2 ms-2  ">
+                                  <li  class="btn-sm btn-primary  ">${data[log][1]}</li> </sav>`;
+} 
+  
+     $(".msgbox").append(members);
+                  $(".card-body").scrollTop($(".card-body")[0].scrollHeight);
+}
+  }
+  });
+
+
+// log=$("#count").val()
+}
+},30000);  
+ });
+
+ 
+$("#msg-in").submit(function( event ){
+  
+  event.preventDefault();
+  
+  // console.log( $( this ).serialize() );
+  $.ajax({
+  // dataType: "json",
+  type: "POST",
+  url:  "auth_page.php?view=addmsg&page=phones",
+  data: $( this ).serialize(),
+  success: function(data){
+//  console.log(data);
+$("#message").val('')
+  }
+}); 
+
+});
+
+                    </script>
+                    <style>
+                    
+                     .bt-img{
+  border: none !important;
+  background-color: none;
+  background-image: url(imagesystem/chat.png)  !important;
+  background-size:  100% 100%  !important;
+  height: 50px  !important;
+   width: 50px  !important;
+                      }
+                      .loadmg{
+                        background-image: url(imagesystem/loadmg.gif);
+                        background-size: auto 100%;
+                        height: 10px;
+                        background-repeat: no-repeat;
+                      }
+
+
+  div.fixed .card .card-body{
+    height:300px;
+  }                     
+  div.bt {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  /* height:50px; */
+  width: 50px;
+ 
+}
+div.fixed {
+  position: fixed;
+  bottom: 0px;
+  right: 50px;
+  /* height:200px; */
+  width: 300px;
+  /* border: 3px solid #73AD21; */
+}
+ 
+div.fixed .card-head{
+ margin: 0px;
+ padding: 0px;
+ height: 40px;
+}
+                    </style>
+                    <script>
+                      $(document).ready(function(){
+                        $(".bt-tog").click(function(){
+                        //  console.log($("div.fixed").toggle());
+                       $("div.fixed").toggle()
+                      });
+
+                      $(".card-head").click(function(){
+                        //  console.log($("div.fixed").toggle());
+                       $(".card-body,.card-footer").toggle()
+                      });
+                      })
+                   
+                      $(".card-body").scrollTop($(".card-body")[0].scrollHeight);
+                    </script>
+                </body>
+                </html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มกำลังพล</title>
+</head>
+
+<!-- CSS LOAD START -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+<!-- JAVASCRIPT LOAD START -->
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="locales/bootstrap-datepicker.th.min.js"></script>
+<body><script> 
+function idcardw(text){
+  data = '<?php ckid()?>';
+  const idcard = JSON.parse(data);
+  try  
+{  
+  var country = idcard.find(el => el.idcard === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+function ckemail(text){
+  data = '<?php ckemail()?>';
+  const ckemail = JSON.parse(data);
+  try  
+{  
+  var country = ckemail.find(el => el.email === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+
+function ckphones(text){
+  data = '<?php ckphones()?>';
+  const ckphones = JSON.parse(data);
+  try  
+{  
+  var country = ckphones.find(el => el.phones === text);
+  // console.log(Object.keys(country).length ); 
+  if(Object.keys(country).length >=1){
+  return true; 
+}
+}
+catch(err)
+{
+  return false; 
+}
+return false; 
+}
+</script>
+  <div class="container-sm ">
+      <h3>เพิ่มกำลังพล</h3>
+ <nav aria-label="breadcrumb">
+
+  <ol  class="breadcrumb">
+    <!-- <li class="breadcrumb-item"><a href="">หน้าแรก</a> </li> -->
+    <li class="breadcrumb-item"><a href="?view=list&page=housing">รายการ</a> </li>
+    <li class="breadcrumb-item active" aria-current="page"> เพิ่มข้อมูล </li>
+  </ol>
+  
+ </nav>
+
+      <hr> <form action="" method="post" id="form1" name="form1"  enctype="multipart/form-data">
+      <div class="row row-cols-auto">
+        <div class=" col-auto col-12  col-lg-3 row  ">
+        
+            <label class="form-label   mt-3">เลขที่บ้าน</label>
+       
+     
+            <input type="text" class="form-control form-text  <?php echo @$err['idcard'];?> " name="idcard" id="idcard" placeholder="เลขที่บ้าน" value="<?php echo @$idcard?>" required>
+         
+          </div>
+      
+         
+<div class=" col-auto col-12  col-lg-3   ">
+  <label class="form-label mt-3">เขต</label>
+  <select class="form-control form-select form-select-lg btn border-secondary  " name="housingrow" id="housingrow">
+    <option     value="1">ประทวน</option>
+    <option    value="2">สัญญาบัตร</option>
+     
+</select>
+  <!-- <input type="text" class="form-control form-text  <?php echo @$err['affiliation'];?> " name="affiliation" id="affiliation" placeholder="เขต" value="<?php echo @$affiliation?>" required> -->
+</div>
+<div class=" col-auto col-12  col-lg-3   ">
+    <label class="form-label mt-3 ">สถานะ</label>
+    <select class="form-control form-select form-select-lg btn border-secondary   btn-success  " name="status" id="status">
+      <option class=" btn  btn-success "    value="1"><?php echo status(1)?></option>
+      <option class="btn btn-primary"  value="2"><?php echo  status(2)?></option>
+      <option class="btn btn-warning "  value="3"><?php echo status(3)?></option>
+      <option class="btn btn-danger"  value="4"><?php echo status(4)?></option>
+  </select>
+  <script>
+    $("#status").change( function(){
+     console.log(this.value );
+     $(this).removeClass("btn-success");
+     $(this).removeClass("btn-primary");
+     $(this).removeClass("btn-warning");
+     $(this).removeClass("btn-danger");
+    switch (this.value) {
+        case "1":
+        $(this).addClass("btn-success");
+        break;
+        case "2":
+        $(this).addClass("btn-primary");
+        break;
+        case "3":
+        $(this).addClass("btn-warning");
+        break;
+        case "4":
+        $(this).addClass("btn-danger");
+        break;
+      default:
+        break;
+    }
+    } );
+  </script>
+    <!-- <input type="text" class="form-control form-text  <?php echo @$err['affiliation'];?> " name="affiliation" id="affiliation" placeholder="เขต" value="<?php echo @$affiliation?>" required> -->
+  </div>     
+          <div class="d-flex  col-auto col-12 col-lg-8"><button class="btn btn-success mt-2" type="submit">บันทึก</button></div>
+      
+        </div>  </form>
+       
+       
+  </div> 
+ 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
